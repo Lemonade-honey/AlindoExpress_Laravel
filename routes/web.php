@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SesiController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,8 +30,12 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/dashboard/logout', [DashboardController::class, 'logout']);
 
+    Route::get('/dashboard/staf', [UserController::class, 'index']);
+    Route::get('/dashboard/staf/find', [UserController::class, 'search']);
+
     Route::middleware(["role:admin"])->group(function () {
         Route::get('/dashboard/admin', [DashboardController::class, 'admin']);
+        Route::get('/dashboard/staf/create', [UserController::class, 'index']);
     });
 });
 

@@ -1,30 +1,33 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit\Services;
 
 use App\Services\UserService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-use function PHPUnit\Framework\assertTrue;
-
 class UserServiceTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    private UserService $userService;
+    use RefreshDatabase, WithFaker;
 
-    protected function setUp(): void{
-        parent::setUp();
+    /** @test */
+    public function it_can_create_an_account()
+    {
+        $userService = new UserService();
 
-        $this->userService = $this->app->make(UserService::class);
-    }
+        $userData = [
+            'name' => 'daffa alif',
+            // 'email' => 'daffa@gmail.com',
+            'password' => 'password123',
+        ];
 
-    public function testSample(){
-        self::assertTrue(true);
+        $query = $userService->createAccount($userData);
+        $this->assertTrue($query);
+        // $this->assertNotNull($userService->createAccount($userData));
+        // $this->assertDatabaseHas('users', [
+        //     'email' => $userData['email'],
+        // ]);
     }
 }
+
