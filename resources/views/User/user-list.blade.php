@@ -80,7 +80,7 @@
                       <hr class="dropdown-divider" />
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#"
+                      <a class="dropdown-item" href="/dashboard/logout"
                         ><i class="icon-mid bi bi-box-arrow-left me-2"></i>
                         Logout</a
                       >
