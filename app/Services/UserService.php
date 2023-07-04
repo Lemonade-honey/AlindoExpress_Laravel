@@ -10,7 +10,7 @@ class UserService{
     /**
      * Create Account
      */
-    public function createAccount($data): bool{
+    public function create($data): bool{
 
         $validator = Validator::make($data, [
             'name' => 'required',
