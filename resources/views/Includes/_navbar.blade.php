@@ -73,29 +73,29 @@
     </div>
     <div class="sidebar-menu">
         <ul class="menu">
-        <li class="sidebar-item active">
-            <a href="#" class="sidebar-link">
+        <li class="sidebar-item">
+            <a href="/dashboard" class="sidebar-link">
             <i class="bi bi-grid-fill"></i>
             <span>Dashboard</span>
             </a>
         </li>
 
         <li class="sidebar-item">
-            <a href="paket.html" class="sidebar-link">
+            <a href="#" class="sidebar-link">
             <i class="bi bi-stack"></i>
             <span>Paket</span>
             </a>
         </li>
 
         <li class="sidebar-item">
-            <a href="staff.html" class="sidebar-link">
+            <a href="/dashboard/staf" class="sidebar-link">
             <i class="bi bi-collection-fill"></i>
             <span>Staff</span>
             </a>
         </li>
 
         <li class="sidebar-item">
-            <a href="list-laporan.html" class="sidebar-link">
+            <a href="#" class="sidebar-link">
             <i class="bi bi-grid-1x2-fill"></i>
             <span>Laporan</span>
             </a>
