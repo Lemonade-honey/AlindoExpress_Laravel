@@ -22,7 +22,7 @@ class UserServiceTest extends TestCase
             'password' => 'password123',
         ];
 
-        $query = $userService->createAccount($userData);
+        $query = $userService->create($userData);
         $this->assertTrue($query);
         // $this->assertNotNull($userService->createAccount($userData));
         // $this->assertDatabaseHas('users', [
