@@ -8,22 +8,23 @@ use Illuminate\Support\Facades\Auth;
 class SesiController extends Controller
 {
     public function login(){
-        return view('Dashboard/login');
+        return view('login');
     }
 
     function postLogin(Request $req){
         $req->validate([
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required'
         ], [
-            'email.required' => 'email wajib diisi',
-            'password.required' => 'password wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Email tidak valid',
+            'password.required' => 'Password wajib diisi',
         ]);
 
         if(Auth::attempt(['email' => $req->email, 'password' => $req->password])){
-            die("SUKSES");
+            return redirect('/dashboard');
         }else{
-            return redirect('/')->withErrors('Email or Password is Wrong');
+            return redirect()->back()->withErrors('Email atau Password salah');
         }
     }
 }
