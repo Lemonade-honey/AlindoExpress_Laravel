@@ -33,4 +33,13 @@ class UserController extends Controller
 
         return view('User/user-list', compact('users'));
     }
+
+    /**
+     * GET User Account Create
+     * 
+     * ADMIN ONLY
+     */
+    public function createAccount(){
+        return view('User/user-create');
+    }
 }

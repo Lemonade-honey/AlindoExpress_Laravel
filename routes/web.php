@@ -32,10 +32,10 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/dashboard/staf', [UserController::class, 'index']);
     Route::get('/dashboard/staf/find', [UserController::class, 'search']);
-
+    
     Route::middleware(["role:admin"])->group(function () {
         Route::get('/dashboard/admin', [DashboardController::class, 'admin']);
-        Route::get('/dashboard/staf/create', [UserController::class, 'index']);
+        Route::get('/dashboard/staf/create', [UserController::class, 'createAccount']);
     });
 });
 
