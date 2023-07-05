@@ -125,6 +125,11 @@
                 </div>
 
                 <div class="card-body">
+                  @if(session()->has('success'))
+                      <div class="alert alert-success">
+                          {{ session()->get('success') }}
+                      </div>
+                  @endif
                   <div class="table-responsive">
                     <table class="table table-bordered mb-0">
                       <thead>
@@ -144,69 +149,9 @@
                             <td class="text-bold-500">{{ $user->name }}</td>
                             <td>{{ $user->role }}</td>
                             <td class="text-center">
-                              <a
-                                href="#"
-                                class="btn btn-warning btn-sm"
-                                >View</a
-                              >
-                              <!-- <a href="" class="btn btn-danger btn-sm">Cancel</a> -->
-  
-                              <button
-                                type="button"
-                                class="btn btn-danger btn-sm"
-                                data-toggle="modal"
-                                data-target="#konfirmasiModal"
-                              >
+                              <a href="/dashboard/staf/delete/{{ $user->id }}" class="btn btn-danger">
                                 Delete
-                              </button>
-  
-                              <div
-                                class="modal"
-                                id="konfirmasiModal"
-                                tabindex="-1"
-                                role="dialog"
-                                aria-labelledby="konfirmasiModalLabel"
-                                aria-hidden="true"
-                              >
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5
-                                        class="modal-title"
-                                        id="konfirmasiModalLabel"
-                                      >
-                                        Konfirmasi Aksi
-                                      </h5>
-                                      <button
-                                        type="button"
-                                        class="close"
-                                        data-dismiss="modal"
-                                        aria-label="Close"
-                                      >
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      Apakah Anda yakin ingin menghapus data ini?
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button
-                                        type="button"
-                                        class="btn btn-secondary"
-                                        data-dismiss="modal"
-                                      >
-                                        Batal
-                                      </button>
-                                      <button
-                                        type="button"
-                                        class="btn btn-danger"
-                                      >
-                                        Hapus
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+                              </a>
                             </td>
                           </tr>
                         @empty

@@ -63,9 +63,10 @@ class UserController extends Controller
     /**
      * Delete Account
      */
-    public function deleteAccount($idUser){
+    public function deleteAccount(int $idUser){
         try{
             $this->userService->delete($idUser);
+            return redirect()->back()->with('success', 'Akun berhasil dihapus');
         } catch(Exception $ex){
             return redirect('/dashboard/staf')->withErrors($ex->getMessage());
         }

@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/dashboard/admin', [DashboardController::class, 'admin']);
         Route::get('/dashboard/staf/create', [UserController::class, 'createAccount']);
         Route::post('/dashboard/staf/create', [UserController::class, 'postCreateAccount']);
+        Route::get('/dashboard/staf/delete/{id}', [UserController::class, 'deleteAccount']);
     });
 });
 

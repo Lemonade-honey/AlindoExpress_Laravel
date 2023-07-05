@@ -37,9 +37,17 @@ class UserService{
     /**
      * Delete
      */
-    public function delete(int $idUser){
-        $user = User::findOrFail($idUser);
-        $user->delete();
+    public function delete($idUser){
+        try{
+            $user = User::find($idUser);
+            if($user != null){
+                $user->delete();
+            }else{
+                throw new Exception('Akun tidak ditemukan');
+            }
+        } catch (Exception $ex){
+            throw $ex;
+        }
 
         return true;
     }
