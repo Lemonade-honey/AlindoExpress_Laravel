@@ -15,7 +15,8 @@ class UserService{
         $validator = Validator::make($data, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email', // cek jika email blm pernah dibuat
-            'password' => 'required'
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|required_with:password|same:password|min:6'
         ]);
 
         if($validator->fails()){
@@ -33,6 +34,15 @@ class UserService{
         return true;
     }
 
+    /**
+     * Delete
+     */
+    public function delete(int $idUser){
+        $user = User::findOrFail($idUser);
+        $user->delete();
+
+        return true;
+    }
 
     /**
      * Mengambil semua data User

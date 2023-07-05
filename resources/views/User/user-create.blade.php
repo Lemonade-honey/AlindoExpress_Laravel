@@ -116,6 +116,13 @@
                   <section id="basic-horizontal-layouts">
                     <div class="col-md-6 col-12">
                       {{-- Form Start --}}
+                      @if ($errors->any())
+                          <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
+                          </div>
+                      @endif
                       <form class="form form-horizontal" method="POST">
                         @csrf
                         <div class="form-body">
@@ -129,6 +136,7 @@
                                 id="first-name"
                                 class="form-control"
                                 name="name"
+                                value="{{ old('name') }}"
                                 placeholder="Full Name"
                               />
                             </div>
@@ -141,6 +149,7 @@
                                 id="email-id"
                                 class="form-control"
                                 name="email"
+                                value="{{ old('email') }}"
                                 placeholder="Email"
                               />
                             </div>
@@ -179,7 +188,7 @@
                                 type="password"
                                 id="password"
                                 class="form-control"
-                                name="password"
+                                name="password_confirmation"
                                 placeholder="Confirm Password"
                               />
                             </div>

@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function (){
     Route::middleware(["role:admin"])->group(function () {
         Route::get('/dashboard/admin', [DashboardController::class, 'admin']);
         Route::get('/dashboard/staf/create', [UserController::class, 'createAccount']);
+        Route::post('/dashboard/staf/create', [UserController::class, 'postCreateAccount']);
     });
 });
 

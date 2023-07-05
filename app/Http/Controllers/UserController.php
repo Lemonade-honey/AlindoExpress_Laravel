@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Services\UserService;
+use Exception;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -41,5 +42,32 @@ class UserController extends Controller
      */
     public function createAccount(){
         return view('User/user-create');
+    }
+
+    /**
+     * POST User Account Create
+     */
+    public function postCreateAccount(Request $request){
+        try{
+            if($this->userService->create($request->input())){
+                return redirect('/dashboard/staf')->with('success', 'Akun berhasil ditambahkan');
+            }else{
+                throw new Exception('Error at Create Account, Try again leter');
+            }
+        } catch(Exception $ex){
+            // die($ex->getMessage());
+            return redirect('/dashboard/staf/create')->withErrors($ex->getMessage());
+        }
+    }
+
+    /**
+     * Delete Account
+     */
+    public function deleteAccount($idUser){
+        try{
+            $this->userService->delete($idUser);
+        } catch(Exception $ex){
+            return redirect('/dashboard/staf')->withErrors($ex->getMessage());
+        }
     }
 }
