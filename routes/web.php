@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PaketController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,9 @@ Route::middleware(['guest'])->group(function (){
 Route::get('/home', function (){
     return redirect('/');
 });
+
+Route::get('/paket', [PaketController::class, 'listPaket']);
+Route::get('/paket/create', [PaketController::class, 'createPaket']);
 
 Route::middleware(['auth'])->group(function (){
     // harus login
