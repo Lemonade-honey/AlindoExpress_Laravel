@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
+        Schema::create('pakets', function(Blueprint $table){
             $table->id();
-            $table->morphs('tokenable');
-            $table->string('name');
-            $table->string('token', 64)->unique();
-            $table->text('abilities')->nullable();
-            $table->timestamp('last_used_at')->nullable();
-            $table->timestamp('expires_at')->nullable();
+            $table->bigInteger('resi')->unique();
+            $table->text('data_paket');
+            $table->text('biaya_paket');
+            $table->text('vendor_paket')->nullable();
+            $table->text('history_paket');
+            $table->enum('status_paket', ['proses', 'selesai', 'cancel'])->default('proses');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personal_access_tokens');
+        Schema::dropIfExists('pakets');
     }
 };
