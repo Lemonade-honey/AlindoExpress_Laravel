@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pakets', function(Blueprint $table){
             $table->id();
-            $table->bigInteger('resi')->unique();
+            $table->text('resi')->unique();
             $table->text('data_paket');
             $table->text('biaya_paket');
             $table->text('vendor_paket')->nullable();
