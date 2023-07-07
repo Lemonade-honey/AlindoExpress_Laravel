@@ -5,18 +5,21 @@ namespace App\Http\Controllers;
 use App\Services\PaketService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class PaketController extends Controller
 {
     private PaketService $paketService;
-    public function __construct(){
+    public function __construct()
+    {
         $this->paketService = new PaketService();
     }
 
     /**
      * GET List Paket
      */
-    public function listPaket(){
+    public function listPaket()
+    {
         $paket = $this->paketService->getAllPaket();
         return view('Paket/paket-list', compact('paket'));
     }
@@ -24,11 +27,15 @@ class PaketController extends Controller
     /**
      * GET Create Paket
      */
-    public function createPaket(){
+    public function createPaket()
+    {
         return view('Paket/paket-create');
     }
-
-    public function postCreatePaket(Request $request){
+    /**
+     * POST Create Paket
+     */
+    public function postTambahPaket(Request $request)
+    {
         $request->validate([
             'kota-asal' => 'required',
             'kota-tujuan' => 'required',
@@ -44,48 +51,26 @@ class PaketController extends Controller
             'biaya-kirim' => 'required',
             'total-biaya' => 'required'
         ]);
+        try {
+            $response = $this->paketService->tambahPaket($request->all());
+            return redirect(route('paket.show', $response->resi));
+        } catch (Throwable $ex) {
+            return $ex->getMessage();
+        }
+    }
 
+    public function detailPaket($resi)
+    {
+        $paket = $this->paketService->findByResi($resi);
+        return view('Paket/paket-detail', compact('paket'));
+        // return "berhasil ditambah (menampilkan detail paket) - resi : " . $resi;
     }
 
     /**
-     * Resi Generate
-     * 
-     * @return string 
+     * DD Output Test
      */
-    private function resiGenerator(): string{
-        $resi = DB::table('pakets')
-        ->select('resi')->orderByDesc('resi')->first();
-
-        if($resi != null){
-            $resiSplit = str_split($resi->resi, 6);
-            if($resiSplit[0] == date('dmy')){
-                $resi = $resiSplit[0] . $this->autoIncrementResi($resiSplit[1]);
-            }else{
-                $resi = date('dmy') . '0000';
-            }
-        }else{
-            $resi = date('dmy') . '0000';
-        }
-        return $resi;
-    }
-
-    /**
-     * Resi 4 Digit Increment
-     */
-    private function autoIncrementResi(string $last4digit){
-        (int)$kode = ltrim($last4digit, 0);
-        if($kode == null){
-            $kode = 1;
-        }else{
-            $kode = $kode + 1;
-        }
-        return (string)str_pad($kode, 4, '0', STR_PAD_LEFT);
-    }
-
-    public function test(){
-        // dd(date('d-m-Y, H:i:s'));
-        // $kode = '0010';
-        print_r($this->resiGenerator());
-        // echo $this->autoIncrementResi($kode);
+    public function DD($resi){
+        $paket = $this->paketService->findByResi($resi);
+        dd($paket);
     }
 }

@@ -21,7 +21,7 @@
 
   <body>
     <div id="app">
-    @include('includes._navbar')
+    @include('Includes._navbar')
       <div id="main" class="layout-navbar">
         <header class="mb-3">
           <nav class="navbar navbar-expand navbar-light navbar-top">
