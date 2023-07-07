@@ -31,12 +31,26 @@ class PaketController extends Controller
     {
         return view('Paket/paket-create');
     }
-
     /**
      * POST Create Paket
      */
     public function postTambahPaket(Request $request)
     {
+        $request->validate([
+            'kota-asal' => 'required',
+            'kota-tujuan' => 'required',
+            'jumlah-koli' => 'required',
+            'harga-kg' => 'required',
+            'berat-paket' => 'required',
+            'kategori-paket' => 'required',
+            'nama-pengirim' => 'required',
+            'hp-pengirim' => 'required',
+            'nama-penerima' => 'required',
+            'alamat-penerima' => 'required',
+            'hp-penerima' => 'required',
+            'biaya-kirim' => 'required',
+            'total-biaya' => 'required'
+        ]);
         try {
             $response = $this->paketService->tambahPaket($request->all());
             return redirect(route('paket.show', $response->resi));
@@ -47,6 +61,16 @@ class PaketController extends Controller
 
     public function detailPaket($resi)
     {
-        return "berhasil ditambah (menampilkan detail paket) - resi : " . $resi;
+        $paket = $this->paketService->findByResi($resi);
+        return view('Paket/paket-detail', compact('paket'));
+        // return "berhasil ditambah (menampilkan detail paket) - resi : " . $resi;
+    }
+
+    /**
+     * DD Output Test
+     */
+    public function DD($resi){
+        $paket = $this->paketService->findByResi($resi);
+        dd($paket);
     }
 }

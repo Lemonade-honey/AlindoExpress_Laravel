@@ -32,10 +32,9 @@ Route::name('paket.')->group(function () {
         Route::get('/create', [PaketController::class, 'createPaket'])->name('create');
         Route::post('/create', [PaketController::class, 'postTambahPaket'])->name('post-tambah');
 
-        Route::get('/detail/{resi}', [PaketController::class, 'detailPaket'])->name('show');
+        Route::get('/{resi}', [PaketController::class, 'detailPaket'])->name('show');
     });
 });
-
 
 Route::middleware(['auth'])->group(function () {
     // harus login

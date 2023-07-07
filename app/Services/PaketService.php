@@ -24,6 +24,21 @@ class PaketService
 
         return $paket;
     }
+    
+    /**
+     * GET Paket By Resi
+     */
+    public function findByResi($resi){
+        $paket = DB::table('pakets')
+        ->where('resi', $resi)
+        ->limit(1)
+        ->first();
+
+        $paket->data_paket = unserialize($paket->data_paket);
+        $paket->biaya_paket = unserialize($paket->biaya_paket);
+
+        return $paket;
+    }
 
     public function tambahPaket(array $data)
     {
@@ -62,8 +77,6 @@ class PaketService
 
     private function generateKodeResi()
     {
-        // define set timezone date
-        date_default_timezone_set('ASIA/JAKARTA');
 
         // check last input resi di database
         try {
@@ -88,9 +101,6 @@ class PaketService
 
         return $kodeResi;
     }
-
-
-
 
     /**
      * AUTO INCREMENT KODE RESI

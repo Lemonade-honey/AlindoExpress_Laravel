@@ -22,7 +22,7 @@ class DummyPaket extends Seeder
 
         for($i = 1; $i < 10; $i++){
             $paket = [
-                'resi' => date('dmY') . str_pad($i, 4, '0', STR_PAD_LEFT),
+                'resi' => date('dmy') . str_pad($i, 4, '0', STR_PAD_LEFT),
                 'data_paket' => $data_paket,
                 'biaya_paket' => $biaya_paket,
                 'history_paket' => $history_paket,
