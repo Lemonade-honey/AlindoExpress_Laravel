@@ -72,7 +72,7 @@
                         </li>
 
                         <li class="sidebar-item active">
-                            <a href="paket.html" class="sidebar-link">
+                            <a href="{{ route('paket.index') }}" class="sidebar-link">
                                 <i class="bi bi-stack"></i>
                                 <span>Paket</span>
                             </a>
@@ -304,7 +304,7 @@
                                                                 </div>
 
                                                                 <div class="col-12 d-flex justify-content-start">
-                                                                    <a href="paket.html"
+                                                                    <a href="{{ route('paket.index') }}"
                                                                         class="btn btn-danger me-2 mb-1">
                                                                         Cancel
                                                                     </a>

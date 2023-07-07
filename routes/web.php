@@ -32,7 +32,7 @@ Route::name('paket.')->group(function () {
         Route::get('/create', [PaketController::class, 'createPaket'])->name('create');
         Route::post('/create', [PaketController::class, 'postTambahPaket'])->name('post-tambah');
 
-        Route::get('/{resi}', [PaketController::class, 'detailPaket'])->name('show');
+        Route::get('/{resi}/detail', [PaketController::class, 'detailPaket'])->name('show');
     });
 });
 
