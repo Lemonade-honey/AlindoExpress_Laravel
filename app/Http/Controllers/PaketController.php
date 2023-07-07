@@ -69,8 +69,15 @@ class PaketController extends Controller
     /**
      * DD Output Test
      */
-    public function DD($resi){
+    public function DD($resi)
+    {
         $paket = $this->paketService->findByResi($resi);
         dd($paket);
+    }
+
+    public function hapusPaket(Request $request)
+    {
+        $hapus = $this->paketService->deleteByResi($request->resi);
+        return redirect(route('paket.index'));
     }
 }
