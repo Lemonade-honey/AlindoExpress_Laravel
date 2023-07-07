@@ -20,4 +20,11 @@ class PaketService{
 
         return $paket;
     }
+
+    /**
+     * Save Paket
+     */
+    public function create(){
+        
+    }
 }

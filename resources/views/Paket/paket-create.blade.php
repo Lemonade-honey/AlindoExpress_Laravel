@@ -215,7 +215,15 @@
                         <div class="card">
                           <div class="card-content">
                             <div class="card-body">
-                              <form class="form">
+                              @if ($errors->any())
+                                  <div class="alert alert-danger">
+                                      @if ($errors->first())
+                                          <p>{{ $errors->first() }}</p>
+                                      @endif
+                                  </div>
+                              @endif
+                              <form class="form" method="POST">
+                                @csrf
                                 <div class="row">
                                   <div class="col-md-6 col-12">
                                     <div class="form-group">
@@ -249,8 +257,8 @@
                                         id="first-name-column"
                                         class="form-control"
                                         placeholder="Masukkan Kota Tujuan"
-                                        name="fname-column"
-                                        required
+                                        name="kota-tujuan"
+                                        value="{{ old('kota-tujuan') }}"
                                       />
                                     </div>
                                   </div>
@@ -264,8 +272,8 @@
                                         id="first-name-column"
                                         class="form-control"
                                         placeholder="Masukkan Jumlah Koli"
-                                        name="fname-column"
-                                        required
+                                        name="jumlah-koli"
+                                        
                                       />
                                     </div>
                                   </div>
@@ -279,8 +287,8 @@
                                         id="first-name-column"
                                         class="form-control"
                                         placeholder="Masukkan Harga/Kg"
-                                        name="fname-column"
-                                        required
+                                        name="harga-kg"
+                                        
                                       />
                                     </div>
                                   </div>
@@ -294,8 +302,8 @@
                                         id="first-name-column"
                                         class="form-control"
                                         placeholder="Masukkan Berat Volume"
-                                        name="fname-column"
-                                        required
+                                        name="berat-paket"
+                                        
                                       />
                                     </div>
                                   </div>
@@ -309,8 +317,8 @@
                                         id="first-name-column"
                                         class="form-control"
                                         placeholder="Masukkan Kategori"
-                                        name="fname-column"
-                                        required
+                                        name="kategori-paket"
+                                        
                                       />
                                     </div>
                                   </div>
@@ -324,8 +332,8 @@
                                         id="first-name-column"
                                         class="form-control"
                                         placeholder="Nama Pengirim"
-                                        name="fname-column"
-                                        required
+                                        name="nama-pengirim"
+                                        
                                       />
                                     </div>
                                   </div>
@@ -339,8 +347,8 @@
                                         id="last-name-column"
                                         class="form-control"
                                         placeholder="No-hp"
-                                        name="lname-column"
-                                        required
+                                        name="hp-pengirim"
+                                        
                                       />
                                     </div>
                                   </div>
@@ -354,8 +362,8 @@
                                         id="city-column"
                                         class="form-control"
                                         placeholder="Nama"
-                                        name="city-column"
-                                        required
+                                        name="nama-penerima"
+                                        
                                       />
                                     </div>
                                   </div>
@@ -369,8 +377,8 @@
                                         type="text"
                                         id="country-floating"
                                         class="form-control"
-                                        name="country-floating"
-                                        required
+                                        name="alamat-penerima"
+                                        
                                       >
                                       </textarea>
                                     </div>
@@ -384,9 +392,9 @@
                                         type="text"
                                         id="company-column"
                                         class="form-control"
-                                        name="company-column"
+                                        name="hp-penerima"
                                         placeholder="No-hp"
-                                        required
+                                        
                                       />
                                     </div>
                                   </div>
@@ -399,9 +407,9 @@
                                         type="email"
                                         id="email-id-column"
                                         class="form-control"
-                                        name="email-id-column"
+                                        name="biaya-kirim"
                                         placeholder="Biaya"
-                                        required
+                                        
                                       />
                                     </div>
                                   </div>
@@ -412,29 +420,16 @@
                                         type="email"
                                         id="email-id-column"
                                         class="form-control"
-                                        name="email-id-column"
+                                        name="total-biaya"
                                         placeholder="Total"
-                                        required
+                                        
                                       />
                                     </div>
                                   </div>
 
-                                  <div
-                                    class="col-12 d-flex justify-content-start"
-                                  >
-                                    <a
-                                      href="paket.html"
-                                      class="btn btn-danger me-2 mb-1"
-                                    >
-                                      Cancel
-                                    </a>
-                                    <a
-                                      type="submit"
-                                      class="btn btn-primary me-2 mb-1"
-                                      href="invoice.html"
-                                    >
-                                      Buat Invoice
-                                    </a>
+                                  <div class="col-12 d-flex justify-content-start">
+                                    <a href="paket.html" class="btn btn-danger me-2 mb-1">Cancel</a>
+                                    <button type="submit" class="btn btn-primary me-2 mb-1">Buat Invoice </button>
                                   </div>
                                 </div>
                               </form>

@@ -28,6 +28,8 @@ Route::get('/home', function (){
 
 Route::get('/paket', [PaketController::class, 'listPaket']);
 Route::get('/paket/create', [PaketController::class, 'createPaket']);
+Route::post('/paket/create', [PaketController::class, 'postCreatePaket']);
+Route::get('/test', [PaketController::class, 'test']);
 
 Route::middleware(['auth'])->group(function (){
     // harus login
