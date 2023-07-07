@@ -175,14 +175,6 @@
                                       <p class="me-3 mb-1">Vendor Set Empty</p>
                                       <a href="#" class="btn btn-secondary btn-sm">Set Vendor</a>
                                     </div>
-                                    <p class="mb-0 mt-3">Vendor Invoice</p>
-                                    <div class="border border-dark-6 rounded p-3">
-                                      <p>Total Vendor Rp. 20.000</p>
-                                      <p>Vendor A => Jakarta, Rp. 5000</p>
-                                      <p>Vendor B => Magelang, Rp. 15000</p>
-                                      <p>Vendor C => Surakarta, Rp. 50000</p>
-                                      <a href="#"class="btn btn-secondary btn-sm">Edit Vendor</a>
-                                    </div>
                                     <p class="mb-0 mt-3">Update Invoice</p>
                                     <div class="border border-dark-6 rounded p-3">
                                       <ol>
