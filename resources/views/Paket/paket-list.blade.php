@@ -148,9 +148,17 @@
                                                                             data-dismiss="modal">
                                                                             Batal
                                                                         </button>
-                                                                        <button type="button" class="btn btn-danger">
-                                                                            Hapus
-                                                                        </button>
+                                                                        <form action="{{ route('paket.delete') }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            @method('delete')
+                                                                            <input type="hidden" name="resi"
+                                                                                value="{{ $value->resi }}">
+                                                                            <button type="submit"
+                                                                                class="btn btn-danger">
+                                                                                Hapus
+                                                                            </button>
+                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </div>

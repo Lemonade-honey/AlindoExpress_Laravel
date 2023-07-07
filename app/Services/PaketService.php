@@ -24,15 +24,16 @@ class PaketService
 
         return $paket;
     }
-    
+
     /**
      * GET Paket By Resi
      */
-    public function findByResi($resi){
+    public function findByResi($resi)
+    {
         $paket = DB::table('pakets')
-        ->where('resi', $resi)
-        ->limit(1)
-        ->first();
+            ->where('resi', $resi)
+            ->limit(1)
+            ->first();
 
         $paket->data_paket = unserialize($paket->data_paket);
         $paket->biaya_paket = unserialize($paket->biaya_paket);
@@ -121,5 +122,10 @@ class PaketService
         }
 
         return (string)str_pad($lastDigitKode, 4, '0', STR_PAD_LEFT);
+    }
+
+    public function deleteByResi($resi)
+    {
+        return Paket::where('resi', $resi)->delete();
     }
 }

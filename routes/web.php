@@ -33,6 +33,7 @@ Route::name('paket.')->group(function () {
         Route::post('/create', [PaketController::class, 'postTambahPaket'])->name('post-tambah');
 
         Route::get('/{resi}/detail', [PaketController::class, 'detailPaket'])->name('show');
+        Route::delete('/hapus', [PaketController::class, 'hapusPaket'])->name('delete');
     });
 });
 
