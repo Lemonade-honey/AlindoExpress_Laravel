@@ -30,6 +30,9 @@ Route::name('paket.')->group(function () {
     Route::prefix('paket')->group(function () {
         Route::get('/', [PaketController::class, 'listPaket'])->name('index');
         Route::get('/create', [PaketController::class, 'createPaket'])->name('create');
+        Route::post('/create', [PaketController::class, 'postTambahPaket'])->name('post-tambah');
+
+        Route::get('/detail/{resi}', [PaketController::class, 'detailPaket'])->name('show');
     });
 });
 
