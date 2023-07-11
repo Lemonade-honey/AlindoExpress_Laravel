@@ -18,31 +18,35 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['guest'])->group(function () {
-    Route::get('/login', [SesiController::class, 'login']);
-    Route::post('/login', [SesiController::class, 'postLogin'])->name('login');
+    Route::get('/', [SesiController::class, 'login']);
+    Route::post('/', [SesiController::class, 'postLogin'])->name('login');
 });
 // default kalo sudah login => /home
 Route::get('/home', function () {
     return redirect('/');
 });
 
-Route::name('paket.')->group(function () {
-    Route::prefix('paket')->group(function () {
-        Route::get('/', [PaketController::class, 'listPaket'])->name('index');
-        Route::get('/create', [PaketController::class, 'createPaket'])->name('create');
-        Route::post('/create', [PaketController::class, 'postTambahPaket'])->name('post-tambah');
-
-        Route::get('/{resi}', [PaketController::class, 'detailPaket'])->name('show');
-    });
-});
+Route::get('/test/{date}', [PaketController::class, 'DD']);
 
 Route::middleware(['auth'])->group(function () {
     // harus login
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::get('/dashboard/logout', [DashboardController::class, 'logout']);
+    Route::prefix('dashboard')->group(function (){
+        Route::get('/', [DashboardController::class, 'index']);
+        Route::get('/logout', [DashboardController::class, 'logout']);
 
-    Route::get('/dashboard/staf', [UserController::class, 'index']);
-    Route::get('/dashboard/staf/find', [UserController::class, 'search']);
+        Route::get('/staf', [UserController::class, 'index']);
+        Route::get('/staf/find', [UserController::class, 'search']);
+    });
+
+    Route::name('paket.')->group(function () {
+        Route::prefix('paket')->group(function () {
+            Route::get('/', [PaketController::class, 'listPaket'])->name('index');
+            Route::get('/create', [PaketController::class, 'createPaket'])->name('create');
+            Route::post('/create', [PaketController::class, 'postTambahPaket'])->name('post-tambah');
+    
+            Route::get('/{resi}', [PaketController::class, 'detailPaket'])->name('show');
+        });
+    });
 
     Route::middleware(["role:admin"])->group(function () {
         Route::get('/dashboard/admin', [DashboardController::class, 'admin']);
@@ -52,6 +56,6 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });

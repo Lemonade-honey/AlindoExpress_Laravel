@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paket;
 use App\Services\PaketService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -55,22 +57,29 @@ class PaketController extends Controller
             $response = $this->paketService->tambahPaket($request->all());
             return redirect(route('paket.show', $response->resi));
         } catch (Throwable $ex) {
-            return $ex->getMessage();
+            die($ex->getMessage());
         }
     }
 
     public function detailPaket($resi)
     {
+        $role = Auth::user()->role;
         $paket = $this->paketService->findByResi($resi);
-        return view('Paket/paket-detail', compact('paket'));
+        return view('Paket/paket-detail', compact('paket', 'role'));
         // return "berhasil ditambah (menampilkan detail paket) - resi : " . $resi;
+    }
+
+    public function setStatusPaket($resi, $status){
+        $paket = DB::table('pakets')->where('resi', $resi)->update(['status_paket']);
     }
 
     /**
      * DD Output Test
      */
-    public function DD($resi){
-        $paket = $this->paketService->findByResi($resi);
-        dd($paket);
+    public function DD($date){
+        // $data = DB::table('pakets')->select(DB::raw('DATE(created_at) as date_only'))->distinct()->get();
+        // dd($data);
+        $bulan = date('m-Y', strtotime($date));
+        echo $bulan;
     }
 }

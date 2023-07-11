@@ -165,9 +165,16 @@
 
                                   <div class="container-vendor">
                                     <p class="mb-0">Status Invoice</p>
-                                    <div class="border border-dark-6 rounded p-3 d-flex">
-                                      <p>Status :</p>
-                                      <span class="link-success">{{ $paket->status_paket }}</span>
+                                    <div class="border border-dark-6 rounded p-3">
+                                      <div class="d-flex">
+                                        <p>Status : </p><span class="link-success text-capitalize">{{ $paket->status_paket }}</span>
+                                      </div>
+                                      @if (Auth::user()->role == 'admin')
+                                        <div class="d-flex gap-3">
+                                          <a href="#" class="btn btn-success btn-sm">Selesai</a>
+                                          <a href="#" class="btn btn-danger btn-sm">Batal</a>
+                                        </div>
+                                      @endif
                                     </div>
 
                                     <p class="mb-0 mt-3">Vendor Invoice</p>
@@ -178,7 +185,9 @@
                                     <p class="mb-0 mt-3">Update Invoice</p>
                                     <div class="border border-dark-6 rounded p-3">
                                       <ol>
-                                        <li>Create Invoice => Daffa Alif Murtaja [12:00, 22 Sep 2023]</li>
+                                        @foreach ($paket->history_paket as $data)
+                                          <li>{{ $data }}</li>
+                                        @endforeach
                                       </ol>
                                     </div>
                                   </div>

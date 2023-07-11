@@ -70,17 +70,12 @@
                   <h3>Data Paket</h3>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
-                  <nav
-                    aria-label="breadcrumb"
-                    class="breadcrumb-header float-start float-lg-end"
-                  >
+                  <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item">
                         <a href="index.html">Dashboard</a>
                       </li>
-                      <li class="breadcrumb-item active" aria-current="page">
-                        Paket
-                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">Paket</li>
                     </ol>
                   </nav>
                 </div>
@@ -90,12 +85,7 @@
               <div class="card">
                 <div class="card-header">
                   <div class="d-flex justify-content-between">
-                    <a
-                      href="/paket/create"
-                      class="btn btn-primary btn-sm text-center"
-                      >Tambah Data</a
-                    >
-
+                    <a href="{{ route('paket.create') }}" class="btn btn-primary btn-sm text-center">Tambah Data</a>
                     <form action="" method="get" class="d-flex gap-2">
                       <input
                         type="text"
@@ -103,9 +93,7 @@
                         placeholder="Search"
                         name="search"
                       />
-                      <button type="submit" class="btn btn-primary">
-                        Cari
-                      </button>
+                      <button type="submit" class="btn btn-primary">Cari</button>
                     </form>
                   </div>
                 </div>
@@ -129,74 +117,13 @@
                         <tr>
                           <td class="text-bold-500">{{ ($paket->currentPage() - 1) * $paket->perPage() + $key + 1 }}</td>
                           <td>{{ $value->resi }}</td>
-                          <td class="text-bold-500">Jogja-Jakarta</td>
-                          <td>05 Maret 2023</td>
-                          <td>Muhammad Faris Rizaldi</td>
-                          <td>Terkirim</td>
+                          <td class="text-bold-500">{{ $value->data_paket['kota_asal'] }} - {{ $value->data_paket['kota_tujuan'] }}</td>
+                          <td>{{ date('d M Y', strtotime($value->created_at)) }}</td>
+                          <td>{{ $value->data_paket['nama_pengirim'] }}</td>
+                          <td>{{ $value->status_paket }}</td>
                           <td class="text-center">
-                            <a
-                              href="invoice.html"
-                              class="btn btn-warning btn-sm"
-                              >View</a
-                            >
-                            <!-- <a href="" class="btn btn-danger btn-sm">Cancel</a> -->
-
-                            <button
-                              type="button"
-                              class="btn btn-danger btn-sm"
-                              data-toggle="modal"
-                              data-target="#konfirmasiModal"
-                            >
-                              Cancel
-                            </button>
-
-                            <div
-                              class="modal"
-                              id="konfirmasiModal"
-                              tabindex="-1"
-                              role="dialog"
-                              aria-labelledby="konfirmasiModalLabel"
-                              aria-hidden="true"
-                            >
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5
-                                      class="modal-title"
-                                      id="konfirmasiModalLabel"
-                                    >
-                                      Konfirmasi Aksi
-                                    </h5>
-                                    <button
-                                      type="button"
-                                      class="close"
-                                      data-dismiss="modal"
-                                      aria-label="Close"
-                                    >
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    Apakah Anda yakin ingin menghapus data ini?
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button
-                                      type="button"
-                                      class="btn btn-secondary"
-                                      data-dismiss="modal"
-                                    >
-                                      Batal
-                                    </button>
-                                    <button
-                                      type="button"
-                                      class="btn btn-danger"
-                                    >
-                                      Hapus
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                            <a href="/paket/{{ $value->resi }}" class="btn btn-warning btn-sm">View</a>
+                            {{-- <button type="button" class="btn btn-danger btn-sm">Cancel</button> --}}
                           </td>
                         </tr>
                         @empty
@@ -212,23 +139,7 @@
               </div>
             </section>
           </div>
-
-          <footer>
-            <div class="footer clearfix mb-0 text-muted">
-              <div class="float-start">
-                <p>2021 &copy; Alindo Express</p>
-              </div>
-              <div class="float-end">
-                <p>
-                  Crafted with
-                  <span class="text-danger"
-                    ><i class="bi bi-heart-fill icon-mid"></i
-                  ></span>
-                  by <a href="https://ahmadsaugi.com">Mahatech</a>
-                </p>
-              </div>
-            </div>
-          </footer>
+          @include('Includes._footer')
         </div>
       </div>
     </div>

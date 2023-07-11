@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Paket;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -14,7 +15,7 @@ class PaketService
     public function getAllPaket()
     {
         $paket = DB::table('pakets')
-            ->select('resi', 'data_paket')
+            ->select('resi', 'data_paket', 'status_paket', 'created_at')
             ->orderBy('id', 'desc')
             ->paginate(5);
 
@@ -36,6 +37,7 @@ class PaketService
 
         $paket->data_paket = unserialize($paket->data_paket);
         $paket->biaya_paket = unserialize($paket->biaya_paket);
+        $paket->history_paket = unserialize($paket->history_paket);
 
         return $paket;
     }
@@ -47,28 +49,32 @@ class PaketService
             "kota_tujuan" => $data['kota-tujuan'],
             "jumlah_koli" => $data['jumlah-koli'],
             "berat" => 20,
-            "berat_volume" => $data['berat-volume'],
+            "berat_volume" => $data['berat-paket'],
             "harga_kilo" => $data['harga-kg'],
-            "kategori" => $data['kategori-barang'],
+            "kategori" => $data['kategori-paket'],
             "periksa" => 'Periksa-data',
             "nama_pengirim" => $data['nama-pengirim'],
-            "hp_pengirim" => $data['nohp-pengirim'],
+            "hp_pengirim" => $data['hp-pengirim'],
             "nama_penerima" => $data['nama-penerima'],
             "alamat_penerima" => $data['alamat-penerima'],
-            "hp_penerima" => $data['nohp-penerima']
+            "hp_penerima" => $data['hp-penerima']
         ];
 
         $biayaPaket = [
             "biaya_kirim" => $data['biaya-kirim'],
             "biaya_lainnya" => "biaya-lain",
-            "biaya_total" => $data['total']
+            "biaya_total" => $data['total-biaya']
+        ];
+
+        $updatePaket = [
+            "Create Invoice => " . Auth::user()->name ." [" . date('H:i, d M Y') . "]"
         ];
 
         $tambahData = Paket::create([
             'resi' => $this->generateKodeResi(),
             'data_paket' => serialize($dataPaket),
             'biaya_paket' => serialize($biayaPaket),
-            'history_paket' => 'history-paket',
+            'history_paket' => serialize($updatePaket),
             'status_paket' => 'Proses'
         ]);
 

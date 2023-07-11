@@ -87,6 +87,7 @@
             </a>
         </li>
 
+        @if (Auth::user()->role == 'admin')
         <li class="sidebar-item">
             <a href="/dashboard/staf" class="sidebar-link">
             <i class="bi bi-collection-fill"></i>
@@ -100,6 +101,7 @@
             <span>Laporan</span>
             </a>
         </li>
+        @endif
         </ul>
     </div>
     </div>
