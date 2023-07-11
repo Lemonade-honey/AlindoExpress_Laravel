@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\UserController;
@@ -26,7 +27,7 @@ Route::get('/home', function () {
     return redirect('/');
 });
 
-Route::get('/test', [PaketController::class, 'DD']);
+Route::get('/test', [LaporanController::class, 'detail']);
 
 Route::middleware(['auth'])->group(function () {
     // harus login
@@ -48,6 +49,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/{resi}/{status}', [PaketController::class, 'setStatusPaket'])->middleware("role:admin");
         });
     });
+
+    Route::get('/laporan', [LaporanController::class, 'index']);
 
     Route::middleware(["role:admin"])->group(function () {
         Route::get('/dashboard/admin', [DashboardController::class, 'admin']);

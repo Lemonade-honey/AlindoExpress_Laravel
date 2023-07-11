@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Paket;
+use App\Services\LaporanService;
 use App\Services\PaketService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,9 +13,11 @@ use Throwable;
 class PaketController extends Controller
 {
     private PaketService $paketService;
+    private LaporanService $laporanService;
     public function __construct()
     {
         $this->paketService = new PaketService();
+        $this->laporanService = new LaporanService;
     }
 
     /**
@@ -55,6 +58,8 @@ class PaketController extends Controller
         ]);
         try {
             $response = $this->paketService->tambahPaket($request->all());
+            // laporan
+            $this->laporanService->addOrIgnore(date('d-m-Y'));
             return redirect(route('paket.show', $response->resi));
         } catch (Throwable $ex) {
             die($ex->getMessage());
