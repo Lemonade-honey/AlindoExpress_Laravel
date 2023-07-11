@@ -171,7 +171,7 @@
                                       </div>
                                       @if (Auth::user()->role == 'admin')
                                         <div class="d-flex gap-3">
-                                          <a href="#" class="btn btn-success btn-sm">Selesai</a>
+                                          <a href="/paket/{{ $paket->resi }}/selesai" class="btn btn-success btn-sm">Selesai</a>
                                           <a href="#" class="btn btn-danger btn-sm">Batal</a>
                                         </div>
                                       @endif

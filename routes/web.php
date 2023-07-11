@@ -26,7 +26,7 @@ Route::get('/home', function () {
     return redirect('/');
 });
 
-Route::get('/test/{date}', [PaketController::class, 'DD']);
+Route::get('/test', [PaketController::class, 'DD']);
 
 Route::middleware(['auth'])->group(function () {
     // harus login
@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/create', [PaketController::class, 'postTambahPaket'])->name('post-tambah');
     
             Route::get('/{resi}', [PaketController::class, 'detailPaket'])->name('show');
+            Route::get('/{resi}/{status}', [PaketController::class, 'setStatusPaket'])->middleware("role:admin");
         });
     });
 

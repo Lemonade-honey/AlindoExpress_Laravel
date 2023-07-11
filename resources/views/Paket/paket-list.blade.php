@@ -119,8 +119,8 @@
                           <td>{{ $value->resi }}</td>
                           <td class="text-bold-500">{{ $value->data_paket['kota_asal'] }} - {{ $value->data_paket['kota_tujuan'] }}</td>
                           <td>{{ date('d M Y', strtotime($value->created_at)) }}</td>
-                          <td>{{ $value->data_paket['nama_pengirim'] }}</td>
-                          <td>{{ $value->status_paket }}</td>
+                          <td class="text-capitalize">{{ $value->data_paket['nama_pengirim'] }}</td>
+                          <td class="text-capitalize">{{ $value->status_paket }}</td>
                           <td class="text-center">
                             <a href="/paket/{{ $value->resi }}" class="btn btn-warning btn-sm">View</a>
                             {{-- <button type="button" class="btn btn-danger btn-sm">Cancel</button> --}}

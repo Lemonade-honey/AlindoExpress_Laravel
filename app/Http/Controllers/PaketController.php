@@ -70,16 +70,28 @@ class PaketController extends Controller
     }
 
     public function setStatusPaket($resi, $status){
-        $paket = DB::table('pakets')->where('resi', $resi)->update(['status_paket']);
+        $paket = $this->paketService->findByResi($resi);
+        if($paket != null){
+            $history = $paket->history_paket;
+            
+            array_push($history, "Update Status => " . Auth::user()->name .", Paket Status Set To ". $status ." [" . date('H:i, d M Y') . "]");
+            $paket = DB::table('pakets')->where('resi', $resi)->update(['status_paket' => $status, "history_paket" => serialize($history)]);
+
+            return redirect('/paket/' . $resi)->with('succsess', 'Paket berhasil di Update');
+        }else{
+            die('Paket Tidak ditemukan');
+        }
+        
     }
 
     /**
      * DD Output Test
      */
-    public function DD($date){
+    public function DD(){
         // $data = DB::table('pakets')->select(DB::raw('DATE(created_at) as date_only'))->distinct()->get();
         // dd($data);
-        $bulan = date('m-Y', strtotime($date));
-        echo $bulan;
+        $paket = $this->paketService->findByResi('1007230000');
+
+        dd($paket);
     }
 }
