@@ -8,6 +8,8 @@ dari PHP native ke Framework Laravel
 3. Kalo nda paham migration dan seed method, import aja DBnya. Nama DB : alindo_expres
 
 ## Langkah-langkah untuk Start
+### Taruh Project di htdocs Xampp
+ekstrak zip di htdocs, atau clone di dlm htdocs
 ### Tidak Perlu lagi masuk ke public
 beda dari project sebelumnya yang perlu masuk public
 
