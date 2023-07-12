@@ -10,26 +10,20 @@ class LaporanService{
 
         return $laporan;
     }
+    
     public function addOrIgnore($date){
         $date = $this->convert($date);
-        if($this->findLaporan($date) == null){
+        if(!DB::table('laporan_rekap')->where(['rekap' => $date])->exists()){
             $laporan = DB::table('laporan_rekap')->insert([
-                'rekap' => $date
+                'rekap' => $date,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
             ]);
 
-            return $laporan;
+            return true;
+        }else{
+            return false;
         }
-    }
-
-    public function findLaporan($date){
-        $date = $this->convert($date);
-        $laporan = DB::table('laporan_rekap')->where(['rekap' => $date])->get();
-
-        return $laporan;
-    }
-
-    public function findPaketByDate($date){
-        $date = $this->convert($date);
     }
 
     private function convert($date){
