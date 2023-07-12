@@ -96,34 +96,38 @@
                                                             <input type="text" id="first-name-column"
                                                                 class="form-control"
                                                                 placeholder="Masukkan Kota Tujuan"
-                                                                name="kota-tujuan"/>
+                                                                name="kota-tujuan"
+                                                                value="{{ old('kota-tujuan') }}"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="first-name-column">Jumlah Koli</label>
-                                                            <input type="text" id="first-name-column"
+                                                            <input type="number" id="first-name-column"
                                                                 class="form-control"
                                                                 placeholder="Masukkan Jumlah Koli"
-                                                                name="jumlah-koli" />
+                                                                name="jumlah-koli" 
+                                                                value="{{ old('jumlah-koli') }}"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="first-name-column">Harga/Kg</label>
-                                                            <input type="text" id="first-name-column"
+                                                            <input type="number" id="first-name-column"
                                                                 class="form-control"
                                                                 placeholder="Masukkan Harga/Kg"
-                                                                name="harga-kg" />
+                                                                name="harga-kg"
+                                                                value="{{ old('harga-kg') }}"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="first-name-column">Berat Volume (Min berat 50Kg)</label>
-                                                            <input type="text" id="first-name-column"
+                                                            <input type="number" id="first-name-column"
                                                                 class="form-control"
                                                                 placeholder="Masukkan Berat Volume"
-                                                                name="berat-paket" />
+                                                                name="berat-paket"
+                                                                value="{{ old('berat-paket') }}" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
@@ -132,7 +136,8 @@
                                                             <input type="text" id="first-name-column"
                                                                 class="form-control"
                                                                 placeholder="Masukkan Kategori"
-                                                                name="kategori-paket" />
+                                                                name="kategori-paket" 
+                                                                value="{{ old('kategori-paket') }}"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
@@ -141,15 +146,17 @@
                                                             <input type="text" id="first-name-column"
                                                                 class="form-control"
                                                                 placeholder="Nama Pengirim"
-                                                                name="nama-pengirim" />
+                                                                name="nama-pengirim"
+                                                                value="{{ old('nama-pengirim') }}" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="last-name-column">No hp Pengirim</label>
-                                                            <input type="text" id="last-name-column"
+                                                            <input type="number" id="last-name-column"
                                                                 class="form-control" placeholder="No-hp"
-                                                                name="hp-pengirim" />
+                                                                name="hp-pengirim"
+                                                                value="{{ old('hp-pengirim') }}" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
@@ -157,37 +164,41 @@
                                                             <label for="city-column">Nama Penerima</label>
                                                             <input type="text" id="city-column"
                                                                 class="form-control" placeholder="Nama"
-                                                                name="nama-penerima" />
+                                                                name="nama-penerima"
+                                                                value="{{ old('nama-penerima') }}" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="country-floating">Alamat Penerima</label>
-                                                            <textarea type="text" id="country-floating" class="form-control" name="alamat-penerima"></textarea>
+                                                            <textarea type="text" id="country-floating" class="form-control" name="alamat-penerima">{{ old('alamat-penerima') }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="company-column">No hp Penerima</label>
-                                                            <input type="text" id="company-column"
+                                                            <input type="number" id="company-column"
                                                                 class="form-control" name="hp-penerima"
-                                                                placeholder="No-hp" />
+                                                                placeholder="No-hp"
+                                                                value="{{ old('hp-penerima') }}" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Biaya Kirim</label>
-                                                            <input type="text" id="email-id-column"
+                                                            <input type="number" id="email-id-column"
                                                                 class="form-control" name="biaya-kirim"
-                                                                placeholder="Biaya" />
+                                                                placeholder="Biaya"
+                                                                value="{{ old('biaya-kirim') }}" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label for="email-id-column">Total</label>
-                                                            <input type="text" id="email-id-column"
+                                                            <input type="number" id="email-id-column"
                                                                 class="form-control" name="total-biaya"
-                                                                placeholder="Total" />
+                                                                placeholder="Total"
+                                                                value="{{ old('total-biaya') }}" />
                                                         </div>
                                                     </div>
 
