@@ -182,7 +182,7 @@
                                     <p class="mb-0 mt-3">Vendor Invoice</p>
                                     <div class="border border-dark-6 rounded p-3">
                                       <p class="me-3 mb-1">Vendor Set Empty</p>
-                                      <a href="#" class="btn btn-primary btn-sm">Set Vendor</a>
+                                      <a href="/paket/{{ $paket->resi }}/vendor" class="btn btn-primary btn-sm">Set Vendor</a>
                                     </div>
                                     <p class="mb-0 mt-3">Update Invoice</p>
                                     <div class="border border-dark-6 rounded p-3">
