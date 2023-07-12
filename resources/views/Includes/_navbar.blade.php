@@ -107,7 +107,7 @@
           @endif
 
           <li class="sidebar-item my-5">
-            <a href="/dashboard/logout" class="sidebar-link">
+            <a href="/logout" class="sidebar-link">
               <i class="icon-mid bi bi-box-arrow-left"></i>
               <span>Logout</span>
             </a>

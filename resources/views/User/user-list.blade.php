@@ -47,7 +47,7 @@
                   >
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item">
-                        <a href="#">Dashboard</a>
+                        <a href="/">Dashboard</a>
                       </li>
                       <li class="breadcrumb-item active" aria-current="page">
                         Staff
@@ -60,7 +60,7 @@
             <section class="section">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/dashboard/staf/create" class="btn btn-primary btn-sm">Tambah Data Staff</a>
+                        <a href="/staf/create" class="btn btn-primary btn-sm">Tambah Data Staff</a>
                         <!-- Tambah search -->
                     </div>
 
@@ -91,7 +91,7 @@
                                             <td class="text-bold-500">{{ $user->name }}</td>
                                             <td>{{ $user->role }}</td>
                                             <td class="text-center">
-                                                <a href="/dashboard/staf/delete/{{ $user->id }}"
+                                                <a href="/staf/delete/{{ $user->id }}"
                                                     class="btn btn-danger">
                                                     Delete
                                                 </a>

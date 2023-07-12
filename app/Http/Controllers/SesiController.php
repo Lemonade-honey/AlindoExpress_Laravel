@@ -22,7 +22,7 @@ class SesiController extends Controller
         ]);
 
         if(Auth::attempt(['email' => $req->email, 'password' => $req->password])){
-            return redirect('/dashboard');
+            return redirect('/');
         }else{
             return redirect()->back()->withErrors('Email atau Password salah');
         }
