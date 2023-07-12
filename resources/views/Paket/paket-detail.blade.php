@@ -5,65 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Invoice</title>
 
-    <link rel="stylesheet" href="../../assets/css/main/app.css" />
+    <link rel="stylesheet" href="../assets/css/main/app.css" />
+    <link rel="stylesheet" href="../assets/css/main/app-dark.css" />
 
     <link
       rel="shortcut icon"
-      href="../../assets/images/logo/favicon.svg"
+      href="../assets/images/favicon.ico"
       type="image/x-icon"
     />
     <link
       rel="shortcut icon"
-      href="../../assets/images/logo/favicon.png"
+      href="../assets/images/favicon.ico"
       type="image/png"
     />
   </head>
 
   <body>
     <div id="app">
-    @include('Includes._navbar')
+      @include('Includes._navbar')
       <div id="main" class="layout-navbar">
-        <header class="mb-3">
+        <header>
           <nav class="navbar navbar-expand navbar-light navbar-top">
             <div class="container-fluid">
               <a href="#" class="burger-btn d-block">
                 <i class="bi bi-justify fs-3"></i>
               </a>
-
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-lg-0"></ul>
-                <div class="dropdown">
-                  <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                    <div class="user-menu d-flex">
-                      <div class="user-name text-end me-3">
-                        <h6 class="mb-0 text-gray-600">John Ducky</h6>
-                        <p class="mb-0 text-sm text-gray-600">Administrator</p>
-                      </div>
-                      <div class="user-img d-flex align-items-center">
-                        <div class="avatar avatar-md">
-                          <img src="../../assets/images/faces/1.jpg" />
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
             </div>
           </nav>
         </header>
         <div id="main-content">
           <div class="page-heading">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                  <!-- <h3>Data Paket</h3> -->
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-first">
+                  <nav
+                    aria-label="breadcrumb"
+                    class="breadcrumb-header float-start float-lg-end"
+                  >
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                        <a href="index.html">Dashboard</a>
+                      </li>
+                      <li class="breadcrumb-item" aria-current="page"><a href="/paket">Paket</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Detail Invoice</li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </div>
             <section class="section">
               @if ($paket != null)
               <div class="card">
@@ -82,13 +74,13 @@
                                   <div class="col-md-6 col-12">
                                     <div class="form-group">
                                       <label for="first-name-column">Kota Asal</label>
-                                      <p class="form-control">{{ $paket->data_paket['kota_asal'] }}</p>
+                                      <p class="form-control text-capitalize">{{ $paket->data_paket['kota_asal'] }}</p>
                                     </div>
                                   </div>
                                   <div class="col-md-6 col-12">
                                     <div class="form-group">
                                       <label for="first-name-column">Kota Tujuan</label>
-                                      <p class="form-control">{{ $paket->data_paket['kota_tujuan'] }}</p>
+                                      <p class="form-control text-capitalize">{{ $paket->data_paket['kota_tujuan'] }}</p>
                                     </div>
                                   </div>
                                   <div class="col-md-6 col-12">
@@ -112,13 +104,13 @@
                                   <div class="col-md-6 col-12">
                                     <div class="form-group">
                                       <label for="first-name-column">Kategori Barang</label>
-                                      <p class="form-control">{{ $paket->data_paket['kategori'] }}</p>
+                                      <p class="form-control text-capitalize">{{ $paket->data_paket['kategori'] }}</p>
                                     </div>
                                   </div>
                                   <div class="col-md-6 col-12">
                                     <div class="form-group">
                                       <label for="first-name-column">Nama Pengirim</label>
-                                      <p class="form-control">{{ $paket->data_paket['nama_pengirim'] }}</p>
+                                      <p class="form-control text-capitalize">{{ $paket->data_paket['nama_pengirim'] }}</p>
                                     </div>
                                   </div>
                                   <div class="col-md-6 col-12">
@@ -130,7 +122,7 @@
                                   <div class="col-md-6 col-12">
                                     <div class="form-group">
                                       <label for="city-column">Nama Penerima</label>
-                                      <p class="form-control">{{ $paket->data_paket['nama_penerima'] }}</p>
+                                      <p class="form-control text-capitalize">{{ $paket->data_paket['nama_penerima'] }}</p>
                                     </div>
                                   </div>
                                   <div class="col-md-6 col-12">
@@ -160,19 +152,29 @@
                                   </div>
 
                                   <div class="col-12 d-flex justify-content-start mt-3 mb-4">
-                                    <a href="paket.html" class="btn btn-primary me-3 mb-1">Cetak Invoice</a>
+                                    <a href="#" class="btn btn-primary me-3 mb-1">Cetak Invoice</a>
                                   </div>
 
                                   <div class="container-vendor">
                                     <p class="mb-0">Status Invoice</p>
                                     <div class="border border-dark-6 rounded p-3">
                                       <div class="d-flex">
-                                        <p>Status : </p><span class="link-success text-capitalize">{{ $paket->status_paket }}</span>
+                                        @if ($paket->status_paket == 'proses')
+                                          <p>Status : <span class="link-primary text-capitalize">{{ $paket->status_paket }}</span></p>
+                                        @elseif ($paket->status_paket == 'selesai')
+                                          <p>Status : <span class="link-success text-capitalize">{{ $paket->status_paket }}</span></p>
+                                        @else
+                                          <p>Status : <span class="link-danger text-capitalize">{{ $paket->status_paket }}</span></p>
+                                        @endif
                                       </div>
                                       @if (Auth::user()->role == 'admin')
                                         <div class="d-flex gap-3">
+                                          @if ($paket->status_paket == 'proses')
                                           <a href="/paket/{{ $paket->resi }}/selesai" class="btn btn-success btn-sm">Selesai</a>
-                                          <a href="#" class="btn btn-danger btn-sm">Batal</a>
+                                          @elseif($paket->status_paket == 'selesai')
+                                          <a href="/paket/{{ $paket->resi }}/proses" class="btn btn-primary btn-sm">Proses</a>
+                                          @endif
+                                          <a href="/paket/{{ $paket->resi }}/batal" class="btn btn-danger btn-sm">Batal</a>
                                         </div>
                                       @endif
                                     </div>
@@ -180,7 +182,7 @@
                                     <p class="mb-0 mt-3">Vendor Invoice</p>
                                     <div class="border border-dark-6 rounded p-3">
                                       <p class="me-3 mb-1">Vendor Set Empty</p>
-                                      <a href="#" class="btn btn-secondary btn-sm">Set Vendor</a>
+                                      <a href="#" class="btn btn-primary btn-sm">Set Vendor</a>
                                     </div>
                                     <p class="mb-0 mt-3">Update Invoice</p>
                                     <div class="border border-dark-6 rounded p-3">
@@ -207,26 +209,11 @@
             </section>
           </div>
 
-          <footer>
-            <div class="footer clearfix mb-0 text-muted">
-              <div class="float-start">
-                <p>2021 &copy; Alindo Express</p>
-              </div>
-              <div class="float-end">
-                <p>
-                  Crafted with
-                  <span class="text-danger"
-                    ><i class="bi bi-heart-fill icon-mid"></i
-                  ></span>
-                  by <a href="https://ahmadsaugi.com">Mahatech</a>
-                </p>
-              </div>
-            </div>
-          </footer>
+          @include('Includes._footer')
         </div>
       </div>
     </div>
-    <script src="../../assets/js/bootstrap.js"></script>
-    <script src="../../assets/js/app.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>
+    <script src="../assets/js/app.js"></script>
   </body>
 </html>

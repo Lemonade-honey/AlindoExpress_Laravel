@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data Paket</title>
+    <title>Laporan</title>
 
-    <link rel="stylesheet" href="assets/css/main/app.css" />
-    <link rel="stylesheet" href="assets/css/main/app-dark.css" />
+    <link rel="stylesheet" href="../assets/css/main/app.css" />
+    <link rel="stylesheet" href="../assets/css/main/app-dark.css" />
 
     <link
       rel="shortcut icon"
-      href="assets/images/favicon.ico"
+      href="../assets/images/favicon.ico"
       type="image/x-icon"
     />
     <link
       rel="shortcut icon"
-      href="assets/images/favicon.ico"
+      href="../assets/images/favicon.ico"
       type="image/png"
     />
   </head>
@@ -53,7 +53,7 @@
                       </div>
                       <div class="user-img d-flex align-items-center">
                         <div class="avatar avatar-md">
-                          <img src="assets/images/faces/1.jpg" />
+                          <img src="../assets/images/faces/1.jpg" />
                         </div>
                       </div>
                     </div>
@@ -68,7 +68,7 @@
             <div class="page-title">
               <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                  <h3>Data Paket</h3>
+                  <h3>Laporan</h3>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                   <nav
@@ -76,10 +76,9 @@
                     class="breadcrumb-header float-start float-lg-end"
                   >
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item">
-                        <a href="index.html">Dashboard</a>
-                      </li>
-                      <li class="breadcrumb-item active" aria-current="page">Paket</li>
+                      <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                      <li class="breadcrumb-item" aria-current="page"><a href="/laporan">Laporan</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Detail Laporan</li>
                     </ol>
                   </nav>
                 </div>
@@ -89,16 +88,9 @@
               <div class="card">
                 <div class="card-header">
                   <div class="d-flex justify-content-between">
-                    <a href="/paket/create" class="btn btn-primary btn-sm text-center">Tambah Data</a>
-
-                    <form action="" method="get" class="d-flex gap-2">
-                      <input
-                        type="text"
-                        class="form-control float-end"
-                        placeholder="Search"
-                        name="search"
-                      />
-                      <button type="submit" class="btn btn-primary">Cari</button>
+                    <a href="#" class="btn btn-primary btn-sm text-center"
+                      >Cetak Laporan</a
+                    >
                     </form>
                   </div>
                 </div>
@@ -107,70 +99,45 @@
                   <div class="table-responsive">
                     <table class="table table-bordered mb-0">
                       <thead>
-                        <tr>
-                          <th class="text-center">No</th>
-                          <th>Resi</th>
-                          <th>Tujuan</th>
-                          <th>Tanggal</th>
-                          <th>Nama Pengirim</th>
-                          <th class="text-center">Status</th>
-                          <th class="text-center">Aksi</th>
+                        <tr class="text-center">
+                          <th>No</th>
+                          <th>Kode Resi</th>
+                          <th>Tanggal Pembuatan</th>
+                          <th>Kota Tujuan</th>
+                          <th>Total Biaya</th>
+                          <th>Status</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody class="text-center">
                         @forelse ($paket as $key => $value)
                         <tr>
-                            <td class="text-bold-500 text-center">{{ ($paket->currentPage() - 1) * $paket->perPage() + $key + 1 }}</td>
+                            <td class="text-bold-500">{{ $key + 1 }}</td>
                             <td>{{ $value->resi }}</td>
-                            <td class="text-bold-500 text-capitalize">{{ $value->data_paket['kota_asal'] }} - {{ $value->data_paket['kota_tujuan'] }}</td>
-                            <td>{{ date('d M Y', strtotime($value->created_at)) }}</td>
-                            <td class="text-capitalize">{{ $value->data_paket['nama_pengirim'] }}</td>
-                            <td class="text-center text-capitalize">{{ $value->status_paket }}</td>
-                            <td class="text-center">
-                              <a href="/paket/{{ $value->resi }}" class="btn btn-warning btn-sm">View</a>
-                            </td>
-                        </tr>
+                            <td>{{ date('D m Y', strtotime($value->created_at)) }}</td>
+                            <td class="text-bold-500">{{ $value->data_paket['kota_tujuan'] }}</td>
+                            <td class="text-center">{{ $value->biaya_paket['biaya_total'] }}</td>
+                            <td class="text-center">{{ $value->status_paket }}</td>
+                          </tr>
                         @empty
                             
                         @endforelse
                       </tbody>
                     </table>
-                    {{-- Paginate --}}
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                        {{ $paket->links() }}
-                    </div>
                   </div>
                 </div>
               </div>
             </section>
           </div>
 
-          <footer>
-            <div class="footer clearfix mb-0 text-muted">
-              <div class="float-start">
-                <p>2021 &copy; Alindo Express</p>
-              </div>
-              <div class="float-end">
-                <p>
-                  Crafted with
-                  <span class="text-danger"
-                    ><i class="bi bi-heart-fill icon-mid"></i
-                  ></span>
-                  by <a href="https://ahmadsaugi.com">Mahatech</a>
-                </p>
-              </div>
-            </div>
-          </footer>
+          @include('Includes._footer')
         </div>
       </div>
     </div>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>
+    <script src="../assets/js/app.js"></script>
+
     <!-- Tautan ke jQuery dan Bootstrap JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
-
-    <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
-    <script src="assets/js/pages/simple-datatables.js"></script>
   </body>
 </html>
