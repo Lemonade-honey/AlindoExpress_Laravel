@@ -181,8 +181,29 @@
 
                                     <p class="mb-0 mt-3">Vendor Invoice</p>
                                     <div class="border border-dark-6 rounded p-3">
+                                      @if ($paket->vendor_paket != null)
+                                        <table>
+                                          <tr>
+                                            <td>Nama Vendor</td>
+                                            <td>:</td>
+                                            <td>{{ $paket->vendor_paket['nama-vendor'] }}</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Kota Vendor</td>
+                                            <td>:</td>
+                                            <td>{{ $paket->vendor_paket['kota-vendor'] }}</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Harga Vendor</td>
+                                            <td>:</td>
+                                            <td>{{ $paket->vendor_paket['harga-vendor'] }}</td>
+                                          </tr>
+                                        </table>
+                                        <a href="/paket/{{ $paket->resi }}/vendor" class="btn btn-primary btn-sm mt-2">Edit Vendor</a>
+                                      @else
                                       <p class="me-3 mb-1">Vendor Set Empty</p>
-                                      <a href="/paket/{{ $paket->resi }}/vendor" class="btn btn-primary btn-sm">Set Vendor</a>
+                                      <a href="/paket/{{ $paket->resi }}/vendor" class="btn btn-primary btn-sm mt-2">Set Vendor</a>
+                                      @endif
                                     </div>
                                     <p class="mb-0 mt-3">Update Invoice</p>
                                     <div class="border border-dark-6 rounded p-3">

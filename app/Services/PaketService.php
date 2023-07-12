@@ -35,10 +35,29 @@ class PaketService
         ->limit(1)
         ->first();
 
-        $paket->data_paket = unserialize($paket->data_paket);
-        $paket->biaya_paket = unserialize($paket->biaya_paket);
-        $paket->history_paket = unserialize($paket->history_paket);
+        if($paket != null){
+            $paket->data_paket = unserialize($paket->data_paket);
+            $paket->biaya_paket = unserialize($paket->biaya_paket);
+            $paket->vendor_paket = unserialize($paket->vendor_paket);
+            $paket->history_paket = unserialize($paket->history_paket);
+        }
 
+        return $paket;
+    }
+
+    /**
+     * GET Paket by date
+     */
+    public function findByDate($date){
+        $date = date("Y-m", strtotime($date));
+        $paket = DB::table('pakets')
+        ->whereDate('created_at', '=', '2023-07-11')
+        ->orderByDesc('id')->get();
+
+        $paket->map(function ($paket) {
+            $paket->data_paket = unserialize($paket->data_paket);
+            $paket->biaya_paket = unserialize($paket->biaya_paket);
+        });
         return $paket;
     }
 
@@ -129,5 +148,49 @@ class PaketService
         }
 
         return (string)str_pad($lastDigitKode, 4, '0', STR_PAD_LEFT);
+    }
+
+    /**
+     * SET Vendor
+     */
+    public function setVendor($data, $resi){
+        $vendor = [
+            'nama-vendor' => $data['nama-vendor'],
+            'kota-vendor' => $data['kota-vendor'],
+            'harga-vendor' => $data['harga-vendor']
+        ];
+        $history = DB::table('pakets')->select('history_paket')->limit(1)->first();
+        if($history != null){
+            $history = unserialize($history->history_paket);
+            array_push($history, "Update Vendor => " . Auth::user()->name ." [" . date('H:i, d M Y') . "]");
+
+            DB::table('pakets')->where(['resi' => $resi])
+            ->update([
+                'vendor_paket' => serialize($vendor),
+                'history_paket' => serialize($history),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+        }else{
+            die("data is null");
+        }
+    }
+
+    public function deleteVendor($resi){
+        $history = DB::table('pakets')->select('history_paket')->limit(1)->first();
+        if($history != null){
+            $history = unserialize($history->history_paket);
+            array_push($history, "Delete Vendor => " . Auth::user()->name ." [" . date('H:i, d M Y') . "]");
+
+            $paket = DB::table('pakets')->where(['resi' => $resi])
+            ->update([
+                'vendor_paket' => null,
+                'history_paket' => serialize($history),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+
+            return true;
+        }else{
+            return false;
+        }
     }
 }

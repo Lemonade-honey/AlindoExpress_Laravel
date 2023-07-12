@@ -60,12 +60,22 @@
             <section class="section">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="text-bold-500">Yogyakarta ---> Jakarta</h4>
+                  <h4 class="text-bold-500">{{ $paket->data_paket['kota_asal'] }} ---> {{ $paket->data_paket['kota_tujuan'] }}</h4>
                 </div>
                 <div class="card-body">
+                  @if ($errors->any())
+                  <div class="alert alert-danger">
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+                  @endif
                   <section id="basic-horizontal-layouts">
                     <div class="col-md-6 col-12">
-                      <form class="form form-horizontal">
+                      <form class="form form-horizontal" method="POST">
+                        @csrf
                         <div class="form-body">
                           <div class="row">
                             <div class="col-md-4">
@@ -76,8 +86,7 @@
                                 type="text"
                                 class="form-control"
                                 placeholder="Masukkan Nama Vendor"
-                                name="name-vendor"
-                                value=""
+                                name="nama-vendor"
                               />
                             </div>
                             <div class="col-md-4">
@@ -105,7 +114,7 @@
 
                             <div
                               class="col-sm-12 d-flex justify-content-end mt-3">
-                              <a href="staff.html" class="btn btn-danger btn-sm me-1 mb-1 text">Hapus</a>
+                              <a href="/paket/{{ $paket->resi }}/vendor/delete" class="btn btn-danger btn-sm me-1 mb-1 text">Hapus</a>
                               <button type="submit" class="btn btn-primary btn-sm me-1 mb-1">Update</button>
                             </div>
                           </div>

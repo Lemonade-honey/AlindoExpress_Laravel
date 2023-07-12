@@ -90,6 +90,45 @@ class PaketController extends Controller
     }
 
     /**
+     * GET Vendor Paket
+     */
+    public function vendor($resi){
+        $paket = $this->paketService->findByResi($resi);
+        if($paket != null){
+            $vendor = $paket->vendor_paket;
+            return view('Paket/paket-vendor', compact('vendor', 'paket'));
+        }else{
+            return redirect("/paket")->with("errors", "Data Tidak Ada");
+        }
+    }
+
+    /**
+     * POST Vendor Paket
+     */
+    public function postVendor($resi, Request $request){
+        $request->validate([
+            'nama-vendor' => 'required',
+            'kota-vendor' => 'required',
+            'harga-vendor' => 'required|numeric'
+        ]);
+        try{
+            $this->paketService->setVendor($request->all(), $resi);
+            return redirect("/paket/$resi")->with('succsess', 'Vendor Berhasil di Update');
+        } catch (Throwable $th){
+            return redirect()->back()->withErrors($th->getMessage());
+        }
+    }
+
+    /**
+     * GET hapus vendor
+     */
+    public function deleteVendor($resi){
+        if($this->paketService->deleteVendor($resi)){
+            return redirect("/paket/$resi");
+        }
+    }
+
+    /**
      * DD Output Test
      */
     public function DD(){

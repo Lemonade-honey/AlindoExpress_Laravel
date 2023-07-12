@@ -23,14 +23,13 @@ class LaporanController extends Controller
         // dd($laporan);
     }
 
-    /**
-     * Detail Laporan
-     */
-    public function detail(){
-        $tanggal = date('d-m-Y');
-        $laporan = $this->laporanService->findLaporan($tanggal);
 
-        dd($laporan);
+    public function detail($date){
+        $paket = $this->paketService->findByDate($date);
+
+        dd($paket);
+        // return view('Laporan/laporan-detail', compact('paket'));
+        // echo date('Y-m-d');
     }
 
     /**

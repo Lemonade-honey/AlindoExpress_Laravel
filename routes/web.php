@@ -19,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['guest'])->group(function () {
-    Route::get('/', [SesiController::class, 'login']);
-    Route::post('/', [SesiController::class, 'postLogin'])->name('login');
+    Route::get('/login', [SesiController::class, 'login']);
+    Route::post('/login', [SesiController::class, 'postLogin'])->name('login');
 });
 // default kalo sudah login => /home
-Route::get('/home', function () {
-    return redirect('/');
-});
+// Route::get('/home', function () {
+//     return redirect('/');
+// });
 
 Route::get('/test', [LaporanController::class, 'detail']);
 
@@ -46,11 +46,16 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/create', [PaketController::class, 'postTambahPaket'])->name('post-tambah');
     
             Route::get('/{resi}', [PaketController::class, 'detailPaket'])->name('show');
+            Route::get('/{resi}/vendor', [PaketController::class, 'vendor']);
+            Route::post('/{resi}/vendor', [PaketController::class, 'postVendor']);
+            Route::get('/{resi}/vendor/delete', [PaketController::class, 'deleteVendor']);
+            
             Route::get('/{resi}/{status}', [PaketController::class, 'setStatusPaket'])->middleware("role:admin");
         });
     });
 
     Route::get('/laporan', [LaporanController::class, 'index']);
+    Route::get('/laporan/{date}', [LaporanController::class, 'detail']);
 
     Route::middleware(["role:admin"])->group(function () {
         Route::get('/dashboard/admin', [DashboardController::class, 'admin']);
