@@ -61,7 +61,7 @@
               <div class="card">
                 <div class="card-header">
                   <div class="d-flex justify-content-end">
-                    <form action="" method="get" class="d-flex gap-2">
+                    {{-- <form action="" method="get" class="d-flex gap-2">
                       <input
                         type="text"
                         class="form-control float-end w-100"
@@ -69,7 +69,7 @@
                         name="search"
                       />
                       <button type="submit" class="btn btn-primary">Cari</button>
-                    </form>
+                    </form> --}}
                   </div>
                 </div>
 

@@ -61,7 +61,7 @@
                   <div class="d-flex justify-content-between">
                     <a href="/paket/create" class="btn btn-primary btn-sm text-center">Tambah Data</a>
 
-                    <form action="" method="get" class="d-flex gap-2">
+                    {{-- <form action="/paket/search" method="get" class="d-flex gap-2">
                       <input
                         type="text"
                         class="form-control float-end"
@@ -69,7 +69,7 @@
                         name="search"
                       />
                       <button type="submit" class="btn btn-primary">Cari</button>
-                    </form>
+                    </form> --}}
                   </div>
                 </div>
 
