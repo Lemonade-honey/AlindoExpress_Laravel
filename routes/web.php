@@ -31,13 +31,12 @@ Route::get('/test', [LaporanController::class, 'detail']);
 
 Route::middleware(['auth'])->group(function () {
     // harus login
-    Route::prefix('dashboard')->group(function (){
-        Route::get('/', [DashboardController::class, 'index']);
-        Route::get('/logout', [DashboardController::class, 'logout']);
+    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/logout', [DashboardController::class, 'logout']);
 
-        Route::get('/staf', [UserController::class, 'index']);
-        Route::get('/staf/find', [UserController::class, 'search']);
-    });
+    // Staff
+    Route::get('/staf', [UserController::class, 'index']);
+    Route::get('/staf/find', [UserController::class, 'search']);
 
     Route::name('paket.')->group(function () {
         Route::prefix('paket')->group(function () {
@@ -53,16 +52,18 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/{resi}/{status}', [PaketController::class, 'setStatusPaket'])->middleware("role:admin");
         });
     });
-
-    Route::get('/laporan', [LaporanController::class, 'index']);
-    Route::get('/laporan/{date}', [LaporanController::class, 'detail']);
-    Route::get('/laporan/{date}/download', [LaporanController::class, 'cetak']);
-
     Route::middleware(["role:admin"])->group(function () {
-        Route::get('/dashboard/admin', [DashboardController::class, 'admin']);
-        Route::get('/dashboard/staf/create', [UserController::class, 'createAccount']);
-        Route::post('/dashboard/staf/create', [UserController::class, 'postCreateAccount']);
-        Route::get('/dashboard/staf/delete/{id}', [UserController::class, 'deleteAccount']);
+        Route::prefix('staf')->group(function (){
+            Route::get('/create', [UserController::class, 'createAccount']);
+            Route::post('/create', [UserController::class, 'postCreateAccount']);
+            Route::get('/delete/{id}', [UserController::class, 'deleteAccount']);
+        });
+
+        Route::prefix('laporan')->group(function () {
+            Route::get('/', [LaporanController::class, 'index']);
+            Route::get('/{date}', [LaporanController::class, 'detail']);
+            Route::get('/{date}/download', [LaporanController::class, 'cetak']);
+        });
     });
 });
 
