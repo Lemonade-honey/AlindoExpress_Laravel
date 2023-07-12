@@ -94,7 +94,7 @@
                         </tr>
                         @empty
                           <tr>
-                            <td colspan="3" class="text-center">Tidak ada Transaksi Pada Bulan Ini</td>
+                            <td colspan="3" class="text-center">Tidak ada Laporan Yang di Rekap</td>
                           </tr>
                         @endforelse
                       </tbody>

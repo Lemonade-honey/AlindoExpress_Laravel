@@ -26,16 +26,15 @@ class LaporanController extends Controller
 
     public function detail($date){
         $paket = $this->paketService->findByDate($date);
-
-        dd($paket);
-        // return view('Laporan/laporan-detail', compact('paket'));
-        // echo date('Y-m-d');
+        return view('Laporan/laporan-detail', compact('paket', 'date'));
     }
 
     /**
      * Cetak Laporan
      */
-    public function cetak(){
-        
+    public function cetak($date){
+        $paket = $this->paketService->findByDate($date);
+        $this->laporanService->exportToExel($date, $paket);
+        return redirect("/laporan/$date");
     }
 }

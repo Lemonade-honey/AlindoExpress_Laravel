@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/laporan', [LaporanController::class, 'index']);
     Route::get('/laporan/{date}', [LaporanController::class, 'detail']);
+    Route::get('/laporan/{date}/download', [LaporanController::class, 'cetak']);
 
     Route::middleware(["role:admin"])->group(function () {
         Route::get('/dashboard/admin', [DashboardController::class, 'admin']);

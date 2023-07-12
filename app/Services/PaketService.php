@@ -49,10 +49,12 @@ class PaketService
      * GET Paket by date
      */
     public function findByDate($date){
-        $date = date("Y-m", strtotime($date));
+        $tahun = date("Y", strtotime($date));
+        $bulan = date("m", strtotime($date));
         $paket = DB::table('pakets')
-        ->whereDate('created_at', '=', '2023-07-11')
-        ->orderByDesc('id')->get();
+        ->whereMonth('created_at', '=', $bulan)
+        ->whereYear('created_at', '=', $tahun)
+        ->get();
 
         $paket->map(function ($paket) {
             $paket->data_paket = unserialize($paket->data_paket);

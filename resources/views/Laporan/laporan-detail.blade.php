@@ -24,42 +24,12 @@
     <div id="app">
       @include('Includes._navbar')
       <div id="main" class="layout-navbar">
-        <header class="mb-3">
+        <header>
           <nav class="navbar navbar-expand navbar-light navbar-top">
             <div class="container-fluid">
               <a href="#" class="burger-btn d-block">
                 <i class="bi bi-justify fs-3"></i>
               </a>
-
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-lg-0"></ul>
-                <div class="dropdown">
-                  <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                    <div class="user-menu d-flex">
-                      <div class="user-name text-end me-3">
-                        <h6 class="mb-0 text-gray-600">John Ducky</h6>
-                        <p class="mb-0 text-sm text-gray-600">Administrator</p>
-                      </div>
-                      <div class="user-img d-flex align-items-center">
-                        <div class="avatar avatar-md">
-                          <img src="../assets/images/faces/1.jpg" />
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
             </div>
           </nav>
         </header>
@@ -71,10 +41,7 @@
                   <h3>Laporan</h3>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
-                  <nav
-                    aria-label="breadcrumb"
-                    class="breadcrumb-header float-start float-lg-end"
-                  >
+                  <nav aria-label="breadcrumb"class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
                       <li class="breadcrumb-item" aria-current="page"><a href="/laporan">Laporan</a></li>
@@ -88,10 +55,7 @@
               <div class="card">
                 <div class="card-header">
                   <div class="d-flex justify-content-between">
-                    <a href="#" class="btn btn-primary btn-sm text-center"
-                      >Cetak Laporan</a
-                    >
-                    </form>
+                    <a href="/laporan/{{ $date }}/download" class="btn btn-primary btn-sm text-center">Cetak Laporan</a>
                   </div>
                 </div>
 
@@ -119,7 +83,9 @@
                             <td class="text-center">{{ $value->status_paket }}</td>
                           </tr>
                         @empty
-                            
+                          <tr>
+                            <td colspan="6">Tidak ada Transaksi pada bulan ini</td>
+                          </tr>
                         @endforelse
                       </tbody>
                     </table>
