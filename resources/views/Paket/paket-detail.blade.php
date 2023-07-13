@@ -152,7 +152,7 @@
                                   </div>
 
                                   <div class="col-12 d-flex justify-content-start mt-3 mb-4">
-                                    <a href="#" class="btn btn-primary me-3 mb-1">Cetak Invoice</a>
+                                    <a href="/paket/{{ $paket->resi }}/cetakinvoice" class="btn btn-primary me-3 mb-1">Cetak Invoice</a>
                                   </div>
 
                                   <div class="container-vendor">

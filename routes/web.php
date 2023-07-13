@@ -48,6 +48,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/{resi}/vendor', [PaketController::class, 'vendor']);
             Route::post('/{resi}/vendor', [PaketController::class, 'postVendor']);
             Route::get('/{resi}/vendor/delete', [PaketController::class, 'deleteVendor']);
+
+            Route::get('/{resi}/cetakinvoice', [PaketController::class, 'cetakInvoice']);
             
             Route::get('/{resi}/{status}', [PaketController::class, 'setStatusPaket'])->middleware("role:admin");
         });

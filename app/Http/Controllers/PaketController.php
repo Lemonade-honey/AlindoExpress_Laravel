@@ -129,6 +129,14 @@ class PaketController extends Controller
     }
 
     /**
+     * GET Cetak Invoice
+     */
+    public function cetakInvoice($resi){
+        $paket = $this->paketService->findByResi($resi);
+        return view('Paket/paket-cetak-invoice', compact('paket'));
+    }
+
+    /**
      * DD Output Test
      */
     public function DD(){
