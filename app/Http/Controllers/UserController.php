@@ -50,13 +50,13 @@ class UserController extends Controller
     public function postCreateAccount(Request $request){
         try{
             if($this->userService->create($request->input())){
-                return redirect('/dashboard/staf')->with('success', 'Akun berhasil ditambahkan');
+                return redirect('/staf')->with('success', 'Akun berhasil ditambahkan');
             }else{
                 throw new Exception('Error at Create Account, Try again leter');
             }
         } catch(Exception $ex){
             // die($ex->getMessage());
-            return redirect('/dashboard/staf/create')->withErrors($ex->getMessage());
+            return redirect('/staf/create')->withErrors($ex->getMessage());
         }
     }
 
