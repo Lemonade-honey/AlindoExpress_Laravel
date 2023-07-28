@@ -35,6 +35,5 @@ class LaporanController extends Controller
     public function cetak($date){
         $paket = $this->paketService->findByDate($date);
         $this->laporanService->exportToExel($date, $paket);
-        return redirect("/laporan/$date");
     }
 }
